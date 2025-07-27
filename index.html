@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SomaScope - Zrewolucjonizuj Swoje Postępy</title>
+    <title>SomaScope - Revolutionize Your Progress</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -16,9 +16,8 @@
             --border-color: rgba(255, 255, 255, 0.1);
             --gradient-start: #9C27B0;
             --gradient-end: #673AB7;
-            --accent-purple: #7F00FF;
+            --accent-purple: #9C27B0; 
             --accent-teal: #008080;
-            --success-color: #44F2A3;
         }
 
         /* --- Globalne Animacje --- */
@@ -40,11 +39,6 @@
             100% { transform: translateY(0px); }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
         /* --- Podstawowe Style --- */
         * {
             box-sizing: border-box;
@@ -129,8 +123,20 @@
             font-weight: 700;
             text-decoration: none;
             color: var(--primary-text-color);
+            cursor: pointer;
         }
         
+        .nav-logo img, .nav-logo span {
+            transition: transform 0.4s ease-in-out;
+        }
+        
+        .nav-logo:hover img {
+            transform: rotate(360deg);
+        }
+        .nav-logo:hover span {
+            transform: translateY(-3px) scale(1.05);
+        }
+
         .nav-logo img {
             width: 40px;
             height: 40px;
@@ -150,10 +156,14 @@
         }
 
         .nav-links a:hover {
-            color: var(--success-color);
+            color: var(--accent-purple);
         }
 
         /* Przełącznik języka */
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+        }
         .lang-switcher button {
             background: none;
             border: none;
@@ -162,14 +172,17 @@
             font-weight: 600;
             cursor: pointer;
             padding: 5px;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, transform 0.3s ease;
+            font-size: 1.5rem;
+            line-height: 1;
         }
         .lang-switcher button:hover {
             color: var(--primary-text-color);
+            transform: scale(1.1);
         }
         .lang-switcher button.active {
-            color: var(--success-color);
-            text-decoration: underline;
+            color: var(--accent-purple);
+            transform: scale(1.1);
         }
 
         /* --- Przycisk Hamburgera --- */
@@ -233,12 +246,12 @@
             background-size: 200% 100%;
             background-position: left;
             color: white;
-            box-shadow: 0 4px 25px rgba(127, 0, 255, 0.4);
+            box-shadow: 0 4px 25px rgba(156, 39, 176, 0.4);
         }
         
         .btn-primary:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(127, 0, 255, 0.6);
+            box-shadow: 0 8px 30px rgba(156, 39, 176, 0.6);
             background-position: right;
         }
 
@@ -307,7 +320,7 @@
             top: var(--mouse-y, 50%);
             width: 350px;
             height: 350px;
-            background: radial-gradient(circle at center, rgba(127, 0, 255, 0.2), transparent 70%);
+            background: radial-gradient(circle at center, rgba(156, 39, 176, 0.2), transparent 70%);
             transform: translate(-50%, -50%);
             opacity: 0;
             transition: opacity 0.5s;
@@ -404,6 +417,27 @@
             max-width: 600px;
             margin: 0 auto 2.5rem auto;
             color: var(--secondary-text-color);
+        }
+
+        .store-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .store-badge {
+            display: inline-block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .store-badge:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+        }
+        .store-badge img {
+            height: 60px;
+            width: auto;
+            display: block;
         }
 
         /* --- Stopka --- */
@@ -528,6 +562,8 @@
             .section-title { font-size: 2.2rem; }
             .features-grid { grid-template-columns: 1fr; }
             .cta-buttons { flex-direction: column; align-items: center; }
+            .store-buttons { gap: 1rem; }
+            .store-badge img { height: 50px; }
         }
     </style>
 </head>
@@ -541,13 +577,12 @@
                     <span>SomaScope</span>
                 </a>
                 <div class="nav-links" id="nav-links">
-                    <a href="#features" data-lang-key="nav_features">Cechy</a>
-                    <a href="#privacy" data-lang-key="nav_privacy">Prywatność</a>
-                    <a href="policy.html" data-lang-key="nav_policy">Polityka Prywatności</a>
+                    <a href="#features" data-lang-key="nav_features"></a>
+                    <a href="#privacy" data-lang-key="nav_privacy"></a>
+                    <a href="policy.html" data-lang-key="nav_policy"></a>
                     <div class="lang-switcher" id="lang-switcher">
-                        <button data-lang="pl" class="active">PL</button>
-                        <span>/</span>
-                        <button data-lang="en">EN</button>
+                        <button data-lang="pl">🇵🇱</button>
+                        <button data-lang="en">🇬🇧</button>
                     </div>
                 </div>
                 <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="nav-links">
@@ -561,41 +596,50 @@
         <section class="hero-section">
             <div class="container hero">
                 <div class="hero-text hidden">
-                    <h1 data-lang-key="hero_title">Odkryj Potencjał Swojej Sylwetki.</h1>
-                    <p data-lang-key="hero_subtitle">SomaScope wykorzystuje zaawansowaną sztuczną inteligencję, aby analizować Twoje ciało bezpośrednio na telefonie. Zrozum swoje proporcje, śledź postępy i osiągaj cele z pełną gwarancją prywatności.</p>
+                    <h1 data-lang-key="hero_title"></h1>
+                    <p data-lang-key="hero_subtitle"></p>
                     <div class="cta-buttons">
-                        <a href="#" class="btn btn-primary" data-lang-key="hero_cta_button">Pobierz Aplikację</a>
+                        <a href="#download" class="btn btn-primary" data-lang-key="hero_cta_button"></a>
                     </div>
                 </div>
                 <div class="hero-image hidden">
-                    <img src="phone.png" alt="Aplikacja SomaScope na telefonie">
+                    <img src="phone.png" alt="SomaScope App on a phone">
                 </div>
             </div>
         </section>
 
         <section id="features" class="container">
-            <h2 class="section-title hidden" data-lang-key="features_title">Dlaczego SomaScope?</h2>
+            <h2 class="section-title hidden" data-lang-key="features_title"></h2>
             <div class="features-grid">
                 <div class="feature-card hidden">
                     <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3L6.5 6.5L3 12L6.5 17.5L12 21L17.5 17.5L21 12L17.5 6.5L12 3Z"/><path d="M12 3V12H21"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                           <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/>
+                           <path d="M12 14c-2.76 0-8 1.24-8 4v2h12.5"/> 
+                           <circle cx="17" cy="17" r="4.5"/>
+                           <line x1="21.5" y1="21.5" x2="19.5" y2="19.5"/>
+                        </svg>
                     </div>
-                    <h3 data-lang-key="feature_1_title">Analiza AI</h3>
-                    <p data-lang-key="feature_1_desc">Zaawansowany model AI mierzy proporcje Twojego ciała, dając Ci obiektywną ocenę i cenne wskazówki.</p>
+                    <h3 data-lang-key="feature_1_title"></h3>
+                    <p data-lang-key="feature_1_desc"></p>
                 </div>
                 <div class="feature-card hidden">
                     <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20V16"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2.5 17.5l5-5L12 17l8-8"/>
+                            <path d="M16 9h4v4"/>
+                            <line x1="3" y1="21" x2="21" y2="21"/>
+                        </svg>
                     </div>
-                    <h3 data-lang-key="feature_2_title">Śledzenie Postępów</h3>
-                    <p data-lang-key="feature_2_desc">Zapisuj każdą analizę i wizualizuj swoje postępy na czytelnych wykresach. Zobacz, jak Twoje ciało się zmienia.</p>
+                    <h3 data-lang-key="feature_2_title"></h3>
+                    <p data-lang-key="feature_2_desc"></p>
                 </div>
                 <div class="feature-card hidden">
                     <div class="feature-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
-                    <h3 data-lang-key="feature_3_title">Prywatność 100%</h3>
-                    <p data-lang-key="feature_3_desc">Wszystkie Twoje zdjęcia i dane są przetwarzane i przechowywane wyłącznie na Twoim urządzeniu. Nic nie opuszcza Twojego telefonu.</p>
+                    <h3 data-lang-key="feature_3_title"></h3>
+                    <p data-lang-key="feature_3_desc"></p>
                 </div>
             </div>
         </section>
@@ -603,10 +647,10 @@
         <section id="privacy" class="container">
             <div class="privacy-section">
                 <div class="privacy-text hidden">
-                    <h2 class="section-title" style="text-align: left;" data-lang-key="privacy_title">Twoje Dane. Twoja Kontrola.</h2>
-                    <p data-lang-key="privacy_desc">Wierzymy, że najbardziej wrażliwe dane – jak Twój wizerunek – powinny pozostać Twoją własnością. Dlatego SomaScope działa w 100% offline. Żadne serwery, żadna chmura, żadnych kompromisów. Pełne bezpieczeństwo i spokój ducha są wbudowane w naszą aplikację od samego początku.</p>
+                    <h2 class="section-title" style="text-align: left;" data-lang-key="privacy_title"></h2>
+                    <p data-lang-key="privacy_desc"></p>
                     <div class="cta-buttons" style="margin-top: 2rem;">
-                        <a href="policy.html" class="btn btn-secondary" data-lang-key="privacy_cta_button">Przeczytaj Więcej</a>
+                        <a href="policy.html" class="btn btn-secondary" data-lang-key="privacy_cta_button"></a>
                     </div>
                 </div>
                 <div class="privacy-image hidden">
@@ -615,13 +659,17 @@
             </div>
         </section>
 
-        <section class="container cta-section">
+        <section id="download" class="container cta-section">
             <div class="cta-box hidden">
-                <h2 class="section-title" data-lang-key="final_cta_title">Gotów na transformację?</h2>
-                <p data-lang-key="final_cta_desc">Pobierz SomaScope już dziś i zacznij podejmować świadome decyzje treningowe w oparciu o dane, a nie domysły.</p>
-                <div class="cta-buttons" style="justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                    <a href="#" class="btn btn-primary" data-lang-key="final_cta_google">Pobierz z Google Play</a>
-                    <a href="#" class="btn btn-primary" data-lang-key="final_cta_apple">Pobierz z App Store</a>
+                <h2 class="section-title" data-lang-key="final_cta_title"></h2>
+                <p data-lang-key="final_cta_desc"></p>
+                <div class="store-buttons">
+                    <a href="#google-play" class="store-badge">
+                        <img src="android.png" alt="Get it on Google Play">
+                    </a>
+                    <a href="#app-store" class="store-badge">
+                        <img src="apple.png" alt="Download on the App Store">
+                    </a>
                 </div>
             </div>
         </section>
@@ -630,18 +678,17 @@
     <footer>
         <div class="container">
             <div class="footer-links">
-                <a href="policy.html" data-lang-key="footer_policy">Polityka Prywatności</a>
-                <a href="delete.html" data-lang-key="footer_delete">Usuwanie Danych</a>
-                <a href="mailto:support@somascope.app" data-lang-key="footer_contact">Kontakt</a>
+                <a href="policy.html" data-lang-key="footer_policy"></a>
+                <a href="delete.html" data-lang-key="footer_delete"></a>
+                <a href="mailto:support@somascope.app" data-lang-key="footer_contact"></a>
             </div>
-            <p class="copyright" data-lang-key="footer_copyright">&copy; 2025 SomaScope. Wszelkie prawa zastrzeżone.</p>
+            <p class="copyright" data-lang-key="footer_copyright"></p>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // --- Logika przełączania języków ---
             const translations = {
                 pl: {
                     nav_features: "Cechy",
@@ -662,8 +709,6 @@
                     privacy_cta_button: "Przeczytaj Więcej",
                     final_cta_title: "Gotów na transformację?",
                     final_cta_desc: "Pobierz SomaScope już dziś i zacznij podejmować świadome decyzje treningowe w oparciu o dane, a nie domysły.",
-                    final_cta_google: "Pobierz z Google Play",
-                    final_cta_apple: "Pobierz z App Store",
                     footer_policy: "Polityka Prywatności",
                     footer_delete: "Usuwanie Danych",
                     footer_contact: "Kontakt",
@@ -688,8 +733,6 @@
                     privacy_cta_button: "Read More",
                     final_cta_title: "Ready for a transformation?",
                     final_cta_desc: "Download SomaScope today and start making informed training decisions based on data, not guesswork.",
-                    final_cta_google: "Get it on Google Play",
-                    final_cta_apple: "Download on the App Store",
                     footer_policy: "Privacy Policy",
                     footer_delete: "Data Deletion",
                     footer_contact: "Contact",
@@ -702,13 +745,16 @@
             const htmlEl = document.documentElement;
 
             const switchLanguage = (lang) => {
+                htmlEl.setAttribute('lang', lang);
+                document.title = lang === 'pl' ? 'SomaScope - Zrewolucjonizuj Swoje Postępy' : 'SomaScope - Revolutionize Your Progress';
+
                 document.querySelectorAll('[data-lang-key]').forEach(el => {
                     const key = el.getAttribute('data-lang-key');
                     if (translations[lang][key]) {
                         el.innerHTML = translations[lang][key];
                     }
                 });
-                htmlEl.setAttribute('lang', lang);
+
                 localStorage.setItem('somascope_lang', lang);
 
                 langButtons.forEach(btn => {
@@ -717,18 +763,18 @@
             };
 
             langSwitcher.addEventListener('click', (e) => {
-                if (e.target.tagName === 'BUTTON') {
-                    const lang = e.target.dataset.lang;
+                const button = e.target.closest('button');
+                if (button) {
+                    const lang = button.dataset.lang;
                     if (lang) {
                         switchLanguage(lang);
                     }
                 }
             });
             
-            const savedLang = localStorage.getItem('somascope_lang') || 'pl';
+            const savedLang = localStorage.getItem('somascope_lang') || 'en';
             switchLanguage(savedLang);
 
-            // --- Animacje przy przewijaniu (Intersection Observer) ---
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -743,7 +789,6 @@
                 observer.observe(element);
             });
 
-            // --- Logika menu hamburgerowego ---
             const navToggle = document.getElementById('nav-toggle');
             const navLinks = document.getElementById('nav-links');
 
@@ -753,15 +798,15 @@
                     navToggle.classList.toggle('open');
                     navLinks.classList.toggle('active');
                 });
-                navLinks.addEventListener('click', () => {
-                     if(navLinks.classList.contains('active')) {
-                        navToggle.classList.remove('open');
-                        navLinks.classList.remove('active');
+                navLinks.addEventListener('click', (e) => {
+                     const target = e.target;
+                     if(navLinks.classList.contains('active') && (target.tagName === 'A' || target.closest('.lang-switcher'))) {
+                         navToggle.classList.remove('open');
+                         navLinks.classList.remove('active');
                      }
                 });
             }
             
-            // --- Efekt "aurory" na kartach ---
             document.querySelectorAll('.feature-card').forEach(card => {
                 card.addEventListener('mousemove', e => {
                     const rect = card.getBoundingClientRect();
@@ -772,7 +817,6 @@
                 });
             });
 
-            // --- Cień na nawigacji podczas przewijania ---
             const header = document.getElementById('header');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 10) {
