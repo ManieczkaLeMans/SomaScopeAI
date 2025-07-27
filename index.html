@@ -10,9 +10,9 @@
     <style>
         :root {
             --background-color: #121212;
-            --primary-text-color: #E0E0E0;
+            --primary-text-color: #F0F0F0;
             --secondary-text-color: #A0A0A0;
-            --card-background: rgba(26, 29, 36, 0.75);
+            --card-background: rgba(26, 29, 36, 0.65);
             --border-color: rgba(255, 255, 255, 0.1);
             --gradient-start: #9C27B0;
             --gradient-end: #673AB7;
@@ -21,6 +21,7 @@
             --success-color: #44F2A3;
         }
 
+        /* --- Globalne Animacje --- */
         @keyframes moveBackground1 {
             0% { transform: translate(0, 0) scale(1); }
             50% { transform: translate(150px, -100px) scale(1.2); }
@@ -33,24 +34,35 @@
             100% { transform: translate(0, 0) scale(1); }
         }
 
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
+        /* --- Podstawowe Style --- */
         * {
             box-sizing: border-box;
-        }
-
-        html, body {
             margin: 0;
             padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--background-color);
             color: var(--primary-text-color);
             line-height: 1.7;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
         body::before, body::after {
@@ -84,13 +96,29 @@
             padding: 0 2rem;
         }
 
+        h1, h2, h3 {
+            text-wrap: balance;
+        }
+
         /* --- Nawigacja --- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            transition: box-shadow 0.3s ease;
+        }
+        header.scrolled {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 0;
-            animation: fadeIn 0.8s ease-out forwards;
+            height: 80px;
         }
         
         .nav-logo {
@@ -99,6 +127,8 @@
             gap: 12px;
             font-size: 1.5rem;
             font-weight: 700;
+            text-decoration: none;
+            color: var(--primary-text-color);
         }
         
         .nav-logo img {
@@ -106,10 +136,15 @@
             height: 40px;
         }
 
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
         .nav-links a {
             color: var(--primary-text-color);
             text-decoration: none;
-            margin-left: 2rem;
             font-weight: 600;
             transition: color 0.3s ease;
         }
@@ -118,39 +153,69 @@
             color: var(--success-color);
         }
 
+        /* Przełącznik języka */
+        .lang-switcher button {
+            background: none;
+            border: none;
+            color: var(--secondary-text-color);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 5px;
+            transition: color 0.3s ease;
+        }
+        .lang-switcher button:hover {
+            color: var(--primary-text-color);
+        }
+        .lang-switcher button.active {
+            color: var(--success-color);
+            text-decoration: underline;
+        }
+
+        /* --- Przycisk Hamburgera --- */
+        .nav-toggle { display: none; }
+
         /* --- Sekcja Hero --- */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 80px);
+            padding: 2rem 0;
+        }
+
         .hero {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            min-height: 90vh;
-            gap: 2rem;
-            padding: 2rem 0;
+            gap: 4rem;
         }
 
         .hero-text {
-            max-width: 550px;
+            max-width: 600px;
         }
 
         .hero-text h1 {
-            font-size: 3.8rem;
+            font-size: 4rem;
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 1.5rem;
             background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
         }
 
         .hero-text p {
             font-size: 1.2rem;
             color: var(--secondary-text-color);
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
 
         .cta-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
         }
 
         .btn {
@@ -159,68 +224,125 @@
             text-decoration: none;
             font-weight: 700;
             transition: all 0.3s ease;
+            border: 2px solid transparent;
+            display: inline-block;
         }
         
         .btn-primary {
             background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            background-size: 200% 100%;
+            background-position: left;
             color: white;
-            box-shadow: 0 4px 20px rgba(127, 0, 255, 0.4);
+            box-shadow: 0 4px 25px rgba(127, 0, 255, 0.4);
         }
         
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(127, 0, 255, 0.6);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(127, 0, 255, 0.6);
+            background-position: right;
         }
 
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-text-color);
+            border: 2px solid var(--border-color);
+        }
+        .btn-secondary:hover {
+            background-color: var(--border-color);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+
         .hero-image {
-            position: relative;
-            width: 40%;
+            flex-shrink: 0;
+            animation: float 6s ease-in-out infinite;
         }
 
         .hero-image img {
             width: 100%;
-            max-width: 300px;
+            max-width: 320px;
+            filter: drop-shadow(0 0 35px rgba(156, 39, 176, 0.4));
         }
 
         /* --- Sekcje Ogólne --- */
         section {
-            padding: 6rem 0;
+            padding: 8rem 0; 
         }
 
         .section-title {
             text-align: center;
             font-size: 2.8rem;
             font-weight: 700;
-            margin-bottom: 3rem;
+            margin-bottom: 5rem; 
+            background: linear-gradient(90deg, var(--primary-text-color), var(--secondary-text-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         /* --- Sekcja Cechy --- */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem; 
         }
 
         .feature-card {
             background: var(--card-background);
             border: 1px solid var(--border-color);
             border-radius: 20px;
-            padding: 2rem;
+            padding: 2.5rem;
             backdrop-filter: blur(10px);
             text-align: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            left: var(--mouse-x, 50%);
+            top: var(--mouse-y, 50%);
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle at center, rgba(127, 0, 255, 0.2), transparent 70%);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
         }
         
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
         }
 
+        .feature-icon svg {
+            width: 64px;
+            height: 64px;
+            stroke: var(--primary-text-color);
+            stroke-width: 1.5;
+            filter: drop-shadow(0 0 15px var(--accent-purple));
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover .feature-icon svg {
+            transform: scale(1.1);
+        }
+        
         .feature-card h3 {
             font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary-text-color);
         }
         
         .feature-card p {
@@ -228,29 +350,34 @@
         }
 
         /* --- Sekcja Prywatność --- */
+        
+        #privacy {
+            padding-top: 12rem;
+            padding-bottom: 12rem;
+        }
+
         .privacy-section {
             display: flex;
             align-items: center;
-            gap: 4rem;
+            gap: 5rem;
         }
 
-        .privacy-text {
-            flex: 1;
-        }
-
-        .privacy-image {
-            flex: 1;
-            text-align: center;
-        }
-        
-        .privacy-image img {
+        .privacy-text { flex: 1; }
+        .privacy-image { flex: 1; text-align: center; }
+        .privacy-image svg {
             width: 100%;
-            max-width: 400px;
-            border-radius: 20px;
+            max-width: 350px;
+            filter: drop-shadow(0 0 30px var(--accent-teal));
+            transition: transform 0.5s ease;
         }
-        
+        .privacy-image:hover svg {
+            transform: rotateY(15deg) scale(1.05);
+        }
+
         /* --- Sekcja CTA --- */
         .cta-section {
+            padding-top: 0; 
+            padding-bottom: 8rem;
             text-align: center;
         }
         
@@ -259,40 +386,69 @@
             padding: 4rem 2rem;
             border-radius: 28px;
             border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-box:before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -1;
+            margin: -1px;
+            border-radius: inherit;
+            background: linear-gradient(160deg, var(--gradient-start), var(--gradient-end));
+            opacity: 0.1;
+        }
+        .cta-box h2 { color: var(--primary-text-color); margin-bottom: 1.5rem; }
+        .cta-box p {
+            max-width: 600px;
+            margin: 0 auto 2.5rem auto;
+            color: var(--secondary-text-color);
         }
 
         /* --- Stopka --- */
         footer {
-            padding: 3rem 0;
+            padding: 4rem 0 3rem;
             text-align: center;
             border-top: 1px solid var(--border-color);
+            background: #101010;
         }
 
+        .footer-links {
+            margin-bottom: 1.5rem;
+        }
         .footer-links a {
             color: var(--secondary-text-color);
             text-decoration: none;
             margin: 0 1rem;
+            transition: color 0.3s ease;
         }
         .footer-links a:hover {
             color: var(--primary-text-color);
         }
         .copyright {
-            margin-top: 1rem;
             font-size: 0.9rem;
             color: var(--secondary-text-color);
         }
 
-        /* --- Animacje przy przewijaniu --- */
+        /* --- Animacje przy przewijaniu (ulepszone) --- */
         .hidden {
             opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            filter: blur(5px);
+            transform: translateY(40px) scale(0.95);
+            transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .visible {
             opacity: 1;
-            transform: translateY(0);
+            filter: blur(0);
+            transform: translateY(0) scale(1);
         }
+        
+        /* Staggered animation delays */
+        .feature-card.visible:nth-child(1) { transition-delay: 0.1s; }
+        .feature-card.visible:nth-child(2) { transition-delay: 0.2s; }
+        .feature-card.visible:nth-child(3) { transition-delay: 0.3s; }
         
         /* --- Responsywność --- */
         @media (max-width: 992px) {
@@ -300,39 +456,103 @@
                 flex-direction: column;
                 text-align: center;
             }
-            .cta-buttons {
+            .hero-text { max-width: 100%; }
+            .cta-buttons { justify-content: center; }
+            .hero-image { margin-top: 3rem; }
+            .privacy-section {
+                flex-direction: column-reverse;
+                gap: 3rem;
+                text-align: center;
+            }
+            .section-title {
+                text-align: center !important;
+            }
+            .privacy-text .cta-buttons {
                 justify-content: center;
             }
-            .hero-image {
-                width: 70%;
-                margin-top: 3rem;
-            }
-            .privacy-section {
-                flex-direction: column;
-            }
         }
+        
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* Uproszczona nawigacja dla mobile */
+            .nav-toggle { 
+                display: block; 
+                z-index: 1001; 
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                padding: 10px;
+            }
+            .nav-toggle .hamburger {
+                width: 30px; height: 3px; background-color: var(--primary-text-color);
+                border-radius: 5px; position: relative; transition: all 0.3s ease-in-out;
+            }
+            .nav-toggle .hamburger::before,
+            .nav-toggle .hamburger::after {
+                content: ''; position: absolute; width: 30px; height: 3px;
+                background-color: var(--primary-text-color); border-radius: 5px;
+                transition: all 0.3s ease-in-out; left: 0;
+            }
+            .nav-toggle .hamburger::before { top: -10px; }
+            .nav-toggle .hamburger::after { top: 10px; }
+            .nav-toggle.open .hamburger { background: transparent; }
+            .nav-toggle.open .hamburger::before { transform: rotate(45deg) translate(6px, 8px); }
+            .nav-toggle.open .hamburger::after { transform: rotate(-45deg) translate(5px, -7px); }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background: var(--background-color);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+                z-index: 1000;
+            }
+            .nav-links.active {
+                transform: translateX(-100%);
+            }
+            .nav-links a {
+                margin-left: 0;
+                font-size: 1.8rem;
+            }
+            .lang-switcher {
+                position: absolute;
+                bottom: 30px;
+                font-size: 1.2rem;
+            }
+
             .hero-text h1 { font-size: 2.8rem; }
             .section-title { font-size: 2.2rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .cta-buttons { flex-direction: column; align-items: center; }
         }
-
     </style>
 </head>
 <body>
 
-    <header>
+    <header id="header">
         <div class="container">
             <nav>
-                <div class="nav-logo">
+                <a href="#" class="nav-logo">
                     <img src="logo.webp" alt="SomaScope Logo">
                     <span>SomaScope</span>
+                </a>
+                <div class="nav-links" id="nav-links">
+                    <a href="#features" data-lang-key="nav_features">Cechy</a>
+                    <a href="#privacy" data-lang-key="nav_privacy">Prywatność</a>
+                    <a href="policy.html" data-lang-key="nav_policy">Polityka Prywatności</a>
+                    <div class="lang-switcher" id="lang-switcher">
+                        <button data-lang="pl" class="active">PL</button>
+                        <span>/</span>
+                        <button data-lang="en">EN</button>
+                    </div>
                 </div>
-                <div class="nav-links">
-                    <a href="#features">Cechy</a>
-                    <a href="#privacy">Prywatność</a>
-                    <a href="policy.html">Polityka Prywatności</a>
-                </div>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="nav-links">
+                    <div class="hamburger"></div>
+                </button>
             </nav>
         </div>
     </header>
@@ -341,10 +561,10 @@
         <section class="hero-section">
             <div class="container hero">
                 <div class="hero-text hidden">
-                    <h1>Odkryj Potencjał Swojej Sylwetki.</h1>
-                    <p>SomaScope wykorzystuje zaawansowaną sztuczną inteligencję, aby analizować Twoje ciało bezpośrednio na telefonie. Zrozum swoje proporcje, śledź postępy i osiągaj cele z pełną gwarancją prywatności.</p>
+                    <h1 data-lang-key="hero_title">Odkryj Potencjał Swojej Sylwetki.</h1>
+                    <p data-lang-key="hero_subtitle">SomaScope wykorzystuje zaawansowaną sztuczną inteligencję, aby analizować Twoje ciało bezpośrednio na telefonie. Zrozum swoje proporcje, śledź postępy i osiągaj cele z pełną gwarancją prywatności.</p>
                     <div class="cta-buttons">
-                        <a href="#" class="btn btn-primary">Pobierz Aplikację</a>
+                        <a href="#" class="btn btn-primary" data-lang-key="hero_cta_button">Pobierz Aplikację</a>
                     </div>
                 </div>
                 <div class="hero-image hidden">
@@ -354,22 +574,28 @@
         </section>
 
         <section id="features" class="container">
-            <h2 class="section-title hidden">Dlaczego SomaScope?</h2>
+            <h2 class="section-title hidden" data-lang-key="features_title">Dlaczego SomaScope?</h2>
             <div class="features-grid">
                 <div class="feature-card hidden">
-                    <div class="feature-icon">🧠</div>
-                    <h3>Analiza AI</h3>
-                    <p>Zaawansowany model AI mierzy proporcje Twojego ciała, dając Ci obiektywną ocenę i cenne wskazówki.</p>
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3L6.5 6.5L3 12L6.5 17.5L12 21L17.5 17.5L21 12L17.5 6.5L12 3Z"/><path d="M12 3V12H21"/></svg>
+                    </div>
+                    <h3 data-lang-key="feature_1_title">Analiza AI</h3>
+                    <p data-lang-key="feature_1_desc">Zaawansowany model AI mierzy proporcje Twojego ciała, dając Ci obiektywną ocenę i cenne wskazówki.</p>
                 </div>
                 <div class="feature-card hidden">
-                    <div class="feature-icon">📈</div>
-                    <h3>Śledzenie Postępów</h3>
-                    <p>Zapisuj każdą analizę i wizualizuj swoje postępy na czytelnych wykresach. Zobacz, jak Twoje ciało się zmienia.</p>
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20V16"/></svg>
+                    </div>
+                    <h3 data-lang-key="feature_2_title">Śledzenie Postępów</h3>
+                    <p data-lang-key="feature_2_desc">Zapisuj każdą analizę i wizualizuj swoje postępy na czytelnych wykresach. Zobacz, jak Twoje ciało się zmienia.</p>
                 </div>
                 <div class="feature-card hidden">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>Prywatność 100%</h3>
-                    <p>Wszystkie Twoje zdjęcia i dane są przetwarzane i przechowywane wyłącznie na Twoim urządzeniu. Nic nie opuszcza Twojego telefonu.</p>
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3 data-lang-key="feature_3_title">Prywatność 100%</h3>
+                    <p data-lang-key="feature_3_desc">Wszystkie Twoje zdjęcia i dane są przetwarzane i przechowywane wyłącznie na Twoim urządzeniu. Nic nie opuszcza Twojego telefonu.</p>
                 </div>
             </div>
         </section>
@@ -377,25 +603,25 @@
         <section id="privacy" class="container">
             <div class="privacy-section">
                 <div class="privacy-text hidden">
-                    <h2 class="section-title" style="text-align: left;">Twoje Dane. Twoja Kontrola.</h2>
-                    <p>Wierzymy, że najbardziej wrażliwe dane – jak Twój wizerunek – powinny pozostać Twoją własnością. Dlatego SomaScope działa w 100% offline. Żadne serwery, żadna chmura, żadnych kompromisów. Pełne bezpieczeństwo i spokój ducha są wbudowane w naszą aplikację od samego początku.</p>
+                    <h2 class="section-title" style="text-align: left;" data-lang-key="privacy_title">Twoje Dane. Twoja Kontrola.</h2>
+                    <p data-lang-key="privacy_desc">Wierzymy, że najbardziej wrażliwe dane – jak Twój wizerunek – powinny pozostać Twoją własnością. Dlatego SomaScope działa w 100% offline. Żadne serwery, żadna chmura, żadnych kompromisów. Pełne bezpieczeństwo i spokój ducha są wbudowane w naszą aplikację od samego początku.</p>
                     <div class="cta-buttons" style="margin-top: 2rem;">
-                        <a href="policy.html" class="btn btn-primary">Przeczytaj Więcej o Prywatności</a>
+                        <a href="policy.html" class="btn btn-secondary" data-lang-key="privacy_cta_button">Przeczytaj Więcej</a>
                     </div>
                 </div>
                 <div class="privacy-image hidden">
-                    <img src="https://i.imgur.com/privacy_shield.png" alt="Tarcza symbolizująca prywatność">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#008080" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14.5 11a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 13.5V16" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </div>
             </div>
         </section>
 
-        <section class="container">
+        <section class="container cta-section">
             <div class="cta-box hidden">
-                <h2 class="section-title">Gotów na transformację?</h2>
-                <p>Pobierz SomaScope już dziś i zacznij podejmować świadome decyzje treningowe w oparciu o dane, a nie domysły.</p>
-                <div class="cta-buttons" style="justify-content: center; margin-top: 2rem;">
-                    <a href="#" class="btn btn-primary">Pobierz z Google Play</a>
-                    <a href="#" class="btn btn-primary">Pobierz z App Store</a>
+                <h2 class="section-title" data-lang-key="final_cta_title">Gotów na transformację?</h2>
+                <p data-lang-key="final_cta_desc">Pobierz SomaScope już dziś i zacznij podejmować świadome decyzje treningowe w oparciu o dane, a nie domysły.</p>
+                <div class="cta-buttons" style="justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                    <a href="#" class="btn btn-primary" data-lang-key="final_cta_google">Pobierz z Google Play</a>
+                    <a href="#" class="btn btn-primary" data-lang-key="final_cta_apple">Pobierz z App Store</a>
                 </div>
             </div>
         </section>
@@ -404,16 +630,105 @@
     <footer>
         <div class="container">
             <div class="footer-links">
-                <a href="policy.html">Polityka Prywatności</a>
-                <a href="delete.html">Usuwanie Danych</a>
-                <a href="mailto:support@somascope.app">Kontakt</a>
+                <a href="policy.html" data-lang-key="footer_policy">Polityka Prywatności</a>
+                <a href="delete.html" data-lang-key="footer_delete">Usuwanie Danych</a>
+                <a href="mailto:support@somascope.app" data-lang-key="footer_contact">Kontakt</a>
             </div>
-            <p class="copyright">&copy; 2025 SomaScope. Wszelkie prawa zastrzeżone.</p>
+            <p class="copyright" data-lang-key="footer_copyright">&copy; 2025 SomaScope. Wszelkie prawa zastrzeżone.</p>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Logika przełączania języków ---
+            const translations = {
+                pl: {
+                    nav_features: "Cechy",
+                    nav_privacy: "Prywatność",
+                    nav_policy: "Polityka Prywatności",
+                    hero_title: "Odkryj Potencjał Swojej Sylwetki.",
+                    hero_subtitle: "SomaScope wykorzystuje zaawansowaną sztuczną inteligencję, aby analizować Twoje ciało bezpośrednio na telefonie. Zrozum swoje proporcje, śledź postępy i osiągaj cele z pełną gwarancją prywatności.",
+                    hero_cta_button: "Pobierz Aplikację",
+                    features_title: "Dlaczego SomaScope?",
+                    feature_1_title: "Analiza AI",
+                    feature_1_desc: "Zaawansowany model AI mierzy proporcje Twojego ciała, dając Ci obiektywną ocenę i cenne wskazówki.",
+                    feature_2_title: "Śledzenie Postępów",
+                    feature_2_desc: "Zapisuj każdą analizę i wizualizuj swoje postępy na czytelnych wykresach. Zobacz, jak Twoje ciało się zmienia.",
+                    feature_3_title: "Prywatność 100%",
+                    feature_3_desc: "Wszystkie Twoje zdjęcia i dane są przetwarzane i przechowywane wyłącznie na Twoim urządzeniu. Nic nie opuszcza Twojego telefonu.",
+                    privacy_title: "Twoje Dane. Twoja Kontrola.",
+                    privacy_desc: "Wierzymy, że najbardziej wrażliwe dane – jak Twój wizerunek – powinny pozostać Twoją własnością. Dlatego SomaScope działa w 100% offline. Żadne serwery, żadna chmura, żadnych kompromisów. Pełne bezpieczeństwo i spokój ducha są wbudowane w naszą aplikację od samego początku.",
+                    privacy_cta_button: "Przeczytaj Więcej",
+                    final_cta_title: "Gotów na transformację?",
+                    final_cta_desc: "Pobierz SomaScope już dziś i zacznij podejmować świadome decyzje treningowe w oparciu o dane, a nie domysły.",
+                    final_cta_google: "Pobierz z Google Play",
+                    final_cta_apple: "Pobierz z App Store",
+                    footer_policy: "Polityka Prywatności",
+                    footer_delete: "Usuwanie Danych",
+                    footer_contact: "Kontakt",
+                    footer_copyright: "&copy; 2025 SomaScope. Wszelkie prawa zastrzeżone."
+                },
+                en: {
+                    nav_features: "Features",
+                    nav_privacy: "Privacy",
+                    nav_policy: "Privacy Policy",
+                    hero_title: "Unlock Your Physique's Potential.",
+                    hero_subtitle: "SomaScope uses advanced AI to analyze your body right on your phone. Understand your proportions, track your progress, and achieve your goals with a full privacy guarantee.",
+                    hero_cta_button: "Download The App",
+                    features_title: "Why SomaScope?",
+                    feature_1_title: "AI Analysis",
+                    feature_1_desc: "An advanced AI model measures your body proportions, giving you objective feedback and valuable insights.",
+                    feature_2_title: "Progress Tracking",
+                    feature_2_desc: "Save every analysis and visualize your progress on clear charts. See how your body is changing over time.",
+                    feature_3_title: "100% Privacy",
+                    feature_3_desc: "All your photos and data are processed and stored exclusively on your device. Nothing ever leaves your phone.",
+                    privacy_title: "Your Data. Your Control.",
+                    privacy_desc: "We believe that the most sensitive data – like your image – should remain your property. That's why SomaScope works 100% offline. No servers, no cloud, no compromises. Complete security and peace of mind are built into our app from the start.",
+                    privacy_cta_button: "Read More",
+                    final_cta_title: "Ready for a transformation?",
+                    final_cta_desc: "Download SomaScope today and start making informed training decisions based on data, not guesswork.",
+                    final_cta_google: "Get it on Google Play",
+                    final_cta_apple: "Download on the App Store",
+                    footer_policy: "Privacy Policy",
+                    footer_delete: "Data Deletion",
+                    footer_contact: "Contact",
+                    footer_copyright: "&copy; 2025 SomaScope. All rights reserved."
+                }
+            };
+            
+            const langSwitcher = document.getElementById('lang-switcher');
+            const langButtons = langSwitcher.querySelectorAll('button');
+            const htmlEl = document.documentElement;
+
+            const switchLanguage = (lang) => {
+                document.querySelectorAll('[data-lang-key]').forEach(el => {
+                    const key = el.getAttribute('data-lang-key');
+                    if (translations[lang][key]) {
+                        el.innerHTML = translations[lang][key];
+                    }
+                });
+                htmlEl.setAttribute('lang', lang);
+                localStorage.setItem('somascope_lang', lang);
+
+                langButtons.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.lang === lang);
+                });
+            };
+
+            langSwitcher.addEventListener('click', (e) => {
+                if (e.target.tagName === 'BUTTON') {
+                    const lang = e.target.dataset.lang;
+                    if (lang) {
+                        switchLanguage(lang);
+                    }
+                }
+            });
+            
+            const savedLang = localStorage.getItem('somascope_lang') || 'pl';
+            switchLanguage(savedLang);
+
+            // --- Animacje przy przewijaniu (Intersection Observer) ---
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -426,6 +741,45 @@
 
             document.querySelectorAll('.hidden').forEach(element => {
                 observer.observe(element);
+            });
+
+            // --- Logika menu hamburgerowego ---
+            const navToggle = document.getElementById('nav-toggle');
+            const navLinks = document.getElementById('nav-links');
+
+            if (navToggle && navLinks) {
+                navToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    navToggle.classList.toggle('open');
+                    navLinks.classList.toggle('active');
+                });
+                navLinks.addEventListener('click', () => {
+                     if(navLinks.classList.contains('active')) {
+                        navToggle.classList.remove('open');
+                        navLinks.classList.remove('active');
+                     }
+                });
+            }
+            
+            // --- Efekt "aurory" na kartach ---
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+
+            // --- Cień na nawigacji podczas przewijania ---
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 10) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
             });
         });
     </script>
