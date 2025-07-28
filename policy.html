@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SomaScope - Polityka Prywatności / Privacy Policy</title>
+    <title>SomaScope - Polityka Prywatności i Warunki Użytkowania</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+	<link rel="icon" href="logo.webp" type="image/webp">
     <style>
         :root {
             --background-color: #121212;
-            --primary-text-color: #E0E0E0;
+            --primary-text-color: #F0F0F0;
             --secondary-text-color: #A0A0A0;
-            --card-background: rgba(26, 29, 36, 0.75);
+            --card-background: rgba(26, 29, 36, 0.65);
             --border-color: rgba(255, 255, 255, 0.1);
             --gradient-start: #9C27B0;
             --gradient-end: #673AB7;
-            --accent-purple: #7F00FF;
+            --accent-purple: #9C27B0; 
             --accent-teal: #008080;
-            --success-color: #44F2A3;
         }
 
         @keyframes moveBackground1 {
@@ -35,17 +35,20 @@
 
         * {
             box-sizing: border-box;
-        }
-
-        html, body {
             margin: 0;
             padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--background-color);
             color: var(--primary-text-color);
-            line-height: 1.7;
+            line-height: 1.8;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
         body::before, body::after {
@@ -72,360 +75,363 @@
             background: radial-gradient(circle, var(--accent-teal), transparent 60%);
             animation: moveBackground2 30s ease-in-out infinite;
         }
-
+        
         .container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem 2.5rem;
-            background: var(--card-background);
-            border: 1px solid var(--border-color);
-            border-radius: 28px;
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
-
-        .logo {
-            width: 100px;
-            height: auto;
-            margin-bottom: 1rem;
-        }
-
-        h1 {
-            font-size: 2.5rem;
+        h1, h2, h3 {
+            text-wrap: balance;
             font-weight: 700;
-            margin: 0;
-            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        }
+
+        a {
+            color: var(--accent-purple);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Nawigacja (uproszczona) --- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--primary-text-color);
+        }
+        
+        .nav-logo img {
+            width: 40px;
+            height: 40px;
         }
 
         .lang-switcher {
             display: flex;
-            justify-content: center;
-            margin-bottom: 2.5rem;
-            background: rgba(0,0,0,0.2);
-            border-radius: 30px;
-            padding: 5px;
+            gap: 0.5rem;
         }
-
         .lang-switcher button {
-            background: transparent;
+            background: none;
             border: none;
             color: var(--secondary-text-color);
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            cursor: pointer;
+            padding: 5px;
+            transition: color 0.3s ease, transform 0.3s ease;
+            font-size: 1.5rem;
+            line-height: 1;
         }
-
         .lang-switcher button.active {
-            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
-            color: white;
-            box-shadow: 0 4px 15px rgba(127, 0, 255, 0.4);
+            color: var(--accent-purple);
         }
         
-        .policy-content {
-            display: none;
+        /* --- Główna treść strony --- */
+        main {
+            padding: 4rem 0 6rem 0;
         }
 
-        .policy-content.active {
-            display: block;
-        }
-        
-        .policy-content h2 {
-            font-size: 1.8rem;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 0.5rem;
-            color: var(--primary-text-color);
-        }
-
-        .policy-content h3 {
-            font-size: 1.3rem;
-            color: var(--primary-text-color);
-            margin-top: 2rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .policy-content p, .policy-content li {
-            color: var(--secondary-text-color);
-            font-size: 1rem;
-        }
-
-        .policy-content strong, .highlight {
-            color: var(--primary-text-color);
-            font-weight: 600;
-        }
-
-        .policy-content ul {
-            padding-left: 0;
-            list-style: none;
-        }
-
-        .policy-content ul li {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 1rem;
-        }
-
-        .policy-content ul li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--success-color);
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        
-        .contact-info, .data-summary {
-            background: rgba(0,0,0,0.2);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-top: 1rem;
-            border-left: 4px solid var(--gradient-start);
-        }
-        
-        .data-summary ul {
-            margin-top: 0.5rem;
-        }
-        .data-summary ul li::before {
-            content: '•';
-            color: var(--secondary-text-color);
-        }
-
-        a {
-            color: var(--success-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        a:hover {
-            color: #ffffff;
-        }
-
-        footer {
+        .page-title {
             text-align: center;
-            margin-top: 3rem;
+            font-size: 2.8rem;
+            margin-bottom: 2rem; 
+        }
+        
+        .last-updated {
+            text-align: center;
             color: var(--secondary-text-color);
-            font-size: 0.9rem;
+            margin-bottom: 4rem;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                margin: 1rem;
-                padding: 1.5rem;
-            }
-            h1 {
-                font-size: 2rem;
-            }
-            .policy-content h2 {
-                font-size: 1.5rem;
-            }
-            .lang-switcher button {
-                padding: 0.5rem 1rem;
-                font-size: 0.9rem;
-            }
+        .policy-section {
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem 2.5rem;
+            backdrop-filter: blur(10px);
+            margin-bottom: 3rem;
         }
+        
+        .policy-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+        
+        .policy-section h3 {
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-text-color);
+        }
+        
+        .policy-section p, .policy-section li {
+             color: var(--secondary-text-color);
+             margin-bottom: 1rem;
+        }
+
+        .policy-section ul {
+            padding-left: 20px;
+        }
+
+        .placeholder {
+            background-color: rgba(156, 39, 176, 0.15);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #f3e5f5;
+        }
+
+        /* --- Stopka --- */
+        footer {
+            padding: 4rem 0 3rem;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            background: #101010;
+        }
+        
+        .footer-links a {
+            color: var(--secondary-text-color);
+            margin: 0 1rem;
+        }
+        .copyright {
+            font-size: 0.9rem;
+            color: var(--secondary-text-color);
+            margin-top: 1.5rem;
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <img src="logo.webp" class="logo" alt="SomaScope Logo">
-            <h1>SomaScope</h1>
-        </header>
-
-        <div class="lang-switcher">
-            <button id="btn-pl" data-lang="pl">🇵🇱 Polski</button>
-            <button id="btn-en" data-lang="en">🇬🇧 English</button>
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="nav-logo">
+                    <img src="logo.webp" alt="SomaScope Logo">
+                    <span>SomaScope</span>
+                </a>
+                <div class="lang-switcher" id="lang-switcher">
+                    <button data-lang="pl">🇵🇱</button>
+                    <button data-lang="en">🇬🇧</button>
+                </div>
+            </nav>
         </div>
+    </header>
 
-        <div id="pl" class="policy-content">
-            <h2>Polityka Prywatności</h2>
-            <p class="highlight">Data ostatniej aktualizacji: 22 lipca 2025</p>
-            
-            <p>Dziękujemy za korzystanie z SomaScope. Twoja prywatność jest fundamentem naszej aplikacji. Poniższy dokument wyjaśnia, w jaki sposób dbamy o Twoje dane, stawiając na maksymalną transparentność i bezpieczeństwo.</p>
+    <main>
+        <div class="container">
+            <h1 class="page-title" data-lang-key="title"></h1>
+            <p class="last-updated" data-lang-key="last_updated"></p>
 
-            <h2>1. Nasza Filozofia: Twoje Dane Należą do Ciebie</h2>
-            <p>SomaScope zostało zaprojektowane zgodnie z zasadą <strong>"Privacy by Design" (Prywatność w fazie projektowania)</strong>. Naszym nadrzędnym celem jest zapewnienie, że Twoje dane osobowe, a w szczególności wizerunek, pozostają pod Twoją wyłączną kontrolą.</p>
-            <p class="highlight"><strong>Cały proces analizy – od wykonania zdjęcia, przez detekcję punktów kluczowych ciała, aż po obliczenie metryk – odbywa się w 100% na Twoim urządzeniu. Żadne zdjęcia ani wyniki analiz nigdy nie są wysyłane na nasze serwery ani udostępniane podmiotom trzecim.</strong></p>
-            
-            <h2>2. Administrator i Kontakt</h2>
-            <p>W świetle lokalnego przetwarzania danych, głównym administratorem swoich danych jesteś Ty, Użytkownik. Dostawcą aplikacji i podmiotem odpowiedzialnym za jej działanie jest:</p>
-            <div class="contact-info">
-                <strong>[Wpisz tutaj pełną nazwę Twojej firmy lub imię i nazwisko]</strong><br>
-                Adres: [Wpisz tutaj adres siedziby]<br>
-                NIP/REGON: [Wpisz tutaj dane rejestrowe]<br>
-                Email kontaktowy: <a href="mailto:support@somascope.app">support@somascope.app</a>
-            </div>
+            <section class="policy-section">
+                <h2 data-lang-key="privacy_policy_title"></h2>
 
-            <h2>3. Jakie Dane Przetwarzamy i Dlaczego?</h2>
-            <p>Aby zapewnić pełną funkcjonalność aplikacji, SomaScope przetwarza następujące kategorie danych – wyłącznie lokalnie na Twoim urządzeniu:</p>
-            
-            <div class="data-summary">
-                <h3>Dane Profilowe (Podawane dobrowolnie)</h3>
+                <h3 data-lang-key="privacy_s1_title"></h3>
+                <p data-lang-key="privacy_s1_p1"></p>
+
+                <h3 data-lang-key="privacy_s2_title"></h3>
+                <p data-lang-key="privacy_s2_p1"></p>
+                <p>
+                    <strong data-lang-key="data_controller_name"></strong>: <span class="placeholder">[SOON]</span><br>
+                    <strong data-lang-key="data_controller_address"></strong>: <span class="placeholder">[SOON]</span><br>
+                    <strong data-lang-key="data_controller_contact"></strong>: <span class="placeholder">[somascopeai@gmail.com]</span>
+                </p>
+
+                <h3 data-lang-key="privacy_s3_title"></h3>
+                <p data-lang-key="privacy_s3_p1"></p>
                 <ul>
-                    <li><strong>Dane:</strong> Płeć, wiek, wzrost, waga, częstotliwość treningów, cel (np. redukcja tkanki tłuszczowej).</li>
-                    <li><strong>Cel przetwarzania:</strong> Personalizacja wyników analizy. Wzrost jest kluczowy do przeliczenia pikseli na centymetry, a pozostałe dane pozwalają na kontekstowe dopasowanie metryk.</li>
+                    <li data-lang-key="privacy_s3_item1"></li>
+                    <li data-lang-key="privacy_s3_item2"></li>
+                    <li data-lang-key="privacy_s3_item3"></li>
+                    <li data-lang-key="privacy_s3_item4"></li>
                 </ul>
 
-                <h3>Dane Analityczne (Generowane w aplikacji)</h3>
-                <ul>
-                    <li><strong>Dane:</strong> Zdjęcia wykonane w aplikacji lub wybrane z galerii, wykadrowane wersje zdjęć, wykryte punkty kluczowe (tzw. keypoints), data i godzina analizy oraz obliczone na tej podstawie metryki i wyniki.</li>
-                    <li><strong>Cel przetwarzania:</strong> Przeprowadzenie analizy proporcji ciała i umożliwienie Ci śledzenia postępów w czasie w zakładce "Historia".</li>
-                </ul>
-            </div>
+                <h3 data-lang-key="privacy_s4_title"></h3>
+                <p data-lang-key="privacy_s4_p1"></p>
+                <p data-lang-key="privacy_s4_p2"></p>
+
+                <h3 data-lang-key="privacy_s5_title"></h3>
+                <p data-lang-key="privacy_s5_p1"></p>
+            </section>
             
-            <p class="highlight">Wszystkie powyższe dane są przechowywane w <strong>lokalnej, szyfrowanej bazie danych SQLite</strong> na Twoim urządzeniu, co dodatkowo chroni je przed nieautoryzowanym dostępem.</p>
+            <section class="policy-section">
+                <h2 data-lang-key="tos_title"></h2>
 
+                <h3 data-lang-key="tos_s1_title"></h3>
+                <p data-lang-key="tos_s1_p1"></p>
+                
+                <h3 data-lang-key="tos_s2_title"></h3>
+                <p data-lang-key="tos_s2_p1"></p>
+                
+                <h3 data-lang-key="tos_s3_title"></h3>
+                <p data-lang-key="tos_s3_p1"></p>
+                <p data-lang-key="tos_s3_p2"></p>
+                
+                <h3 data-lang-key="tos_s4_title"></h3>
+                <p data-lang-key="tos_s4_p1"></p>
+                
+                <h3 data-lang-key="tos_s5_title"></h3>
+                <p data-lang-key="tos_s5_p1"></p>
+            </section>
 
-            <h2>4. Usługi Firm Trzecich</h2>
-            <p>Aby ulepszyć działanie aplikacji, korzystamy z zaufanych usług firm trzecich. Ważne jest, abyś wiedział, jakie dane są im udostępniane:</p>
-            
-            <h3>Uwierzytelnianie (Google & Facebook)</h3>
-            <ul>
-                <li><strong>Cel:</strong> Umożliwienie Ci opcjonalnego logowania w celu synchronizacji i tworzenia kopii zapasowych Twoich postępów w przyszłości.</li>
-                <li><strong>Jak to działa:</strong> Gdy logujesz się przez Google lub Facebook, proces ten jest obsługiwany przez ich bezpieczne systemy. My otrzymujemy jedynie podstawowy identyfikator Twojego konta (UserID), który pozwala nam powiązać je z Twoim profilem w SomaScope. <strong>Nie mamy dostępu do Twojego hasła ani prywatnych danych z Twojego konta społecznościowego.</strong></li>
-            </ul>
-
-            <h3>Diagnostyka i Raportowanie Błędów (Firebase Crashlytics)</h3>
-            <ul>
-                <li><strong>Cel:</strong> Pomoc w szybkim identyfikowaniu i naprawianiu błędów technicznych (tzw. "crashy") w aplikacji.</li>
-                <li><strong>Jak to działa:</strong> Jeśli aplikacja ulegnie awarii, usługa Firebase Crashlytics (należąca do Google) automatycznie przesyła nam <strong>anonimowy raport o błędzie</strong>. Raport ten zawiera informacje techniczne, takie jak model urządzenia, wersja systemu operacyjnego i miejsce w kodzie, gdzie wystąpił błąd. <strong>Raporty te nie zawierają żadnych Twoich danych osobowych, zdjęć ani wyników analiz.</strong></li>
-            </ul>
-
-
-            <h2>5. Twoje Prawa – Pełna Kontrola nad Danymi</h2>
-            <p>Masz pełną i natychmiastową kontrolę nad swoimi danymi. W każdej chwili możesz:</p>
-            <ul>
-                <li><strong>Mieć dostęp i edytować</strong> swoje dane profilowe w Ustawieniach aplikacji.</li>
-                <li><strong>Przeglądać</strong> całą historię swoich analiz.</li>
-                <li><strong>Usuwać</strong> pojedyncze lub wiele analiz z historii.</li>
-                <li><strong>Całkowicie i nieodwracalnie usunąć wszystkie swoje dane</strong> z urządzenia za pomocą opcji "Usuń wszystkie dane" w Ustawieniach. Spowoduje to wyczyszczenie bazy danych i usunięcie wszystkich powiązanych plików.</li>
-            </ul>
-
-            <h2>6. Zmiany w Polityce Prywatności</h2>
-            <p>Zastrzegamy sobie prawo do aktualizacji niniejszej Polityki w przyszłości. O wszelkich istotnych zmianach poinformujemy Cię poprzez komunikat w aplikacji lub podczas jej aktualizacji.</p>
         </div>
-        
-        <div id="en" class="policy-content">
-            <h2>Privacy Policy</h2>
-            <p class="highlight">Last Updated: July 22, 2025</p>
+    </main>
 
-            <p>Thank you for using SomaScope. Your privacy is the foundation of our application. This document explains how we care for your data, focusing on maximum transparency and security.</p>
-            
-            <h2>1. Our Philosophy: Your Data Belongs to You</h2>
-            <p>SomaScope was designed with the <strong>"Privacy by Design"</strong> principle at its core. Our primary goal is to ensure that your personal data, especially your image, remains under your exclusive control.</p>
-            <p class="highlight"><strong>The entire analysis process—from taking a photo, through detecting key body points, to calculating metrics—is performed 100% on your device. No photos or analysis results are ever sent to our servers or shared with third parties.</strong></p>
-            
-            <h2>2. Data Controller and Contact</h2>
-            <p>In light of local data processing, the primary controller of your data is you, the User. The application provider and entity responsible for its operation is:</p>
-            <div class="contact-info">
-                <strong>[Enter your full company name or name here]</strong><br>
-                Address: [Enter your registered address here]<br>
-                Tax/Registration ID: [Enter your registration details here]<br>
-                Contact Email: <a href="mailto:support@somascope.app">support@somascope.app</a>
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html" data-lang-key="footer_home"></a>
+                <a href="delete.html" data-lang-key="footer_delete"></a>
+                <a href="mailto:somascopeai@gmail.com" data-lang-key="footer_contact"></a>
             </div>
-
-            <h2>3. What Data Do We Process and Why?</h2>
-            <p>To provide full functionality, SomaScope processes the following data categories—exclusively locally on your device:</p>
-            
-            <div class="data-summary">
-                <h3>Profile Data (Provided voluntarily)</h3>
-                <ul>
-                    <li><strong>Data:</strong> Gender, age, height, weight, training frequency, goal (e.g., fat loss).</li>
-                    <li><strong>Purpose of Processing:</strong> To personalize analysis results. Height is crucial for converting pixels to centimeters, and other data provides context for metric adjustments.</li>
-                </ul>
-
-                <h3>Analytical Data (Generated in-app)</h3>
-                <ul>
-                    <li><strong>Data:</strong> Photos taken within the app or selected from the gallery, cropped versions of photos, detected keypoints, date and time of analysis, and the resulting metrics and scores.</li>
-                    <li><strong>Purpose of Processing:</strong> To perform body proportion analysis and allow you to track your progress over time in the "History" tab.</li>
-                </ul>
-            </div>
-            
-            <p class="highlight">All the above data is stored in a <strong>local, encrypted SQLite database</strong> on your device, which further protects it from unauthorized access.</p>
-
-
-            <h2>4. Third-Party Services</h2>
-            <p>To improve the application's functionality, we use trusted third-party services. It is important for you to know what data is shared with them:</p>
-            
-            <h3>Authentication (Google & Facebook)</h3>
-            <ul>
-                <li><strong>Purpose:</strong> To allow you to optionally log in to sync and back up your progress in the future.</li>
-                <li><strong>How it works:</strong> When you log in via Google or Facebook, the process is handled by their secure systems. We only receive a basic identifier for your account (UserID), which allows us to link it to your SomaScope profile. <strong>We do not have access to your password or private data from your social account.</strong></li>
-            </ul>
-
-            <h3>Diagnostics and Crash Reporting (Firebase Crashlytics)</h3>
-            <ul>
-                <li><strong>Purpose:</strong> To help us quickly identify and fix technical issues (crashes) in the application.</li>
-                <li><strong>How it works:</strong> If the app crashes, the Firebase Crashlytics service (owned by Google) automatically sends us an <strong>anonymous crash report</strong>. This report contains technical information such as the device model, operating system version, and the line of code where the error occurred. <strong>These reports do not contain any of your personal data, photos, or analysis results.</strong></li>
-            </ul>
-
-
-            <h2>5. Your Rights – Full Control Over Your Data</h2>
-            <p>You have full and immediate control over your data. At any time, you can:</p>
-            <ul>
-                <li><strong>Access and edit</strong> your profile data in the app's Settings.</li>
-                <li><strong>Review</strong> your entire analysis history.</li>
-                <li><strong>Delete</strong> single or multiple analyses from your history.</li>
-                <li><strong>Completely and irreversibly delete all your data</strong> from the device using the "Delete All Data" option in Settings. This will clear the database and remove all associated files.</li>
-            </ul>
-
-            <h2>6. Changes to this Privacy Policy</h2>
-            <p>We reserve the right to update this Policy in the future. We will inform you of any significant changes via an in-app message or during an application update.</p>
+            <p class="copyright" data-lang-key="footer_copyright"></p>
         </div>
-
-        <footer>
-            &copy; 2025 SomaScope. All Rights Reserved.
-        </footer>
-    </div>
+    </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const btnPl = document.getElementById('btn-pl');
-            const btnEn = document.getElementById('btn-en');
-            const contentPl = document.getElementById('pl');
-            const contentEn = document.getElementById('en');
+        document.addEventListener('DOMContentLoaded', () => {
+            const translations = {
+                pl: {
+                    title: "Polityka Prywatności i Warunki Użytkowania",
+                    last_updated: "Data ostatniej aktualizacji: 28 lipca 2025",
+                    privacy_policy_title: "Polityka Prywatności",
+                    privacy_s1_title: "1. Wprowadzenie",
+                    privacy_s1_p1: "Niniejsza Polityka Prywatności opisuje, w jaki sposób aplikacja SomaScope (zwana dalej \"Aplikacją\") gromadzi, wykorzystuje i chroni Twoje dane. Twoja prywatność jest dla nas najwyższym priorytetem.",
+                    privacy_s2_title: "2. Administrator Danych",
+                    privacy_s2_p1: "Administratorem Twoich danych osobowych jest Usługodawca:",
+                    data_controller_name: "Nazwa",
+                    data_controller_address: "Adres",
+                    data_controller_contact: "E-mail kontaktowy",
+                    privacy_s3_title: "3. Jakie dane przetwarzamy i w jakim celu?",
+                    privacy_s3_p1: "Aplikacja przetwarza dane, które podajesz, aby zapewnić Ci pełną funkcjonalność. Dane te są przechowywane zarówno lokalnie na Twoim urządzeniu, jak i synchronizowane z bezpiecznymi serwerami Google Firebase w celu zapewnienia dostępu na wielu urządzeniach.",
+                    privacy_s3_item1: "<strong>Dane profilowe:</strong> Twój identyfikator użytkownika (UID), płeć, wiek, wzrost, waga, częstotliwość treningów i cel. Dane te są niezbędne do personalizacji analizy i obliczeń.",
+                    privacy_s3_item2: "<strong>Dane analityczne:</strong> Zdjęcia wykonane w Aplikacji oraz wyniki analiz (metryki, oceny). Zdjęcia są przetwarzane przez model AI lokalnie na urządzeniu, a następnie zapisywane w zaszyfrowanej formie. Wyniki analiz są synchronizowane, abyś mógł śledzić swoje postępy.",
+                    privacy_s3_item3: "<strong>Dane treningowe:</strong> Stworzone przez Ciebie plany treningowe, historia sesji i logi ćwiczeń. Są one synchronizowane, abyś miał do nich dostęp na każdym urządzeniu.",
+                    privacy_s3_item4: "<strong>Dane uwierzytelniające:</strong> Aplikacja korzysta z usług Google Sign-In i Facebook Login do uwierzytelniania. Nie przechowujemy Twoich haseł. Przechowujemy jedynie unikalny identyfikator (UID) dostarczony przez te usługi.",
+                    privacy_s4_title: "4. Twoje Prawa",
+                    privacy_s4_p1: "Masz pełną kontrolę nad swoimi danymi. W dowolnym momencie możesz uzyskać dostęp, poprawić lub usunąć swoje dane. Szczegółowe instrukcje dotyczące usuwania danych częściowych (np. pojedynczej analizy) oraz całkowitego usunięcia konta znajdziesz w aplikacji oraz na naszej stronie informacyjnej dotyczącej usuwania danych.",
+                    privacy_s4_p2: "Wszystkie dane przesyłane między Twoim urządzeniem a serwerami Firebase są szyfrowane przy użyciu protokołu TLS.",
+                    privacy_s5_title: "5. Zmiany w Polityce",
+                    privacy_s5_p1: "Zastrzegamy sobie prawo do aktualizacji niniejszej polityki. O wszelkich istotnych zmianach poinformujemy Cię poprzez powiadomienie w aplikacji lub e-mail.",
 
-            function switchLanguage(lang) {
-                if (lang === 'pl') {
-                    contentPl.classList.add('active');
-                    contentEn.classList.remove('active');
-                    btnPl.classList.add('active');
-                    btnEn.classList.remove('active');
-                    document.documentElement.lang = 'pl';
-                } else {
-                    contentEn.classList.add('active');
-                    contentPl.classList.remove('active');
-                    btnEn.classList.add('active');
-                    btnPl.classList.remove('active');
-                    document.documentElement.lang = 'en';
+                    tos_title: "Warunki Użytkowania (Regulamin)",
+                    tos_s1_title: "1. Postanowienia Ogólne",
+                    tos_s1_p1: "Korzystanie z Aplikacji SomaScope jest równoznaczne z akceptacją niniejszych Warunków. Jeśli nie zgadzasz się z nimi, prosimy o niekorzystanie z Aplikacji.",
+                    tos_s2_title: "2. Opis Usługi",
+                    tos_s2_p1: "Aplikacja SomaScope to narzędzie informacyjne i motywacyjne, wykorzystujące sztuczną inteligencję (AI) do analizy proporcji ciała i śledzenia postępów treningowych.",
+                    tos_s3_title: "3. WAŻNE: Zastrzeżenie Medyczne i Sportowe",
+                    tos_s3_p1: "<strong>Aplikacja SomaScope nie jest wyrobem medycznym i nie świadczy profesjonalnych porad medycznych, dietetycznych ani trenerskich.</strong> Wyniki analiz, oceny i wszelkie rekomendacje generowane przez Aplikację mają charakter wyłącznie informacyjny, szacunkowy i motywacyjny.",
+                    tos_s3_p2: "Przed rozpoczęciem jakiegokolwiek nowego programu treningowego, diety lub w przypadku jakichkolwiek wątpliwości dotyczących stanu zdrowia, Użytkownik jest zobowiązany do skonsultowania się z wykwalifikowanym lekarzem, fizjoterapeutą lub certyfikowanym trenerem personalnym. Usługodawca nie ponosi odpowiedzialności za decyzje zdrowotne lub treningowe podjęte przez Użytkownika na podstawie informacji zawartych w Aplikacji.",
+                    tos_s4_title: "4. Własność Intelektualna",
+                    tos_s4_p1: "Wszelkie prawa do Aplikacji, w tym jej kod, projekt graficzny, logo i nazwa, stanowią wyłączną własność Usługodawcy i są chronione prawem.",
+                    tos_s5_title: "5. Ograniczenie Odpowiedzialności",
+                    tos_s5_p1: "Usługodawca dostarcza Aplikację w stanie \"tak jak jest\" (\"as is\") i nie ponosi odpowiedzialności za jakiekolwiek szkody wynikające z jej użytkowania lub niemożności jej użytkowania, w najszerszym zakresie dozwolonym przez prawo.",
+                    
+                    footer_home: "Strona Główna",
+                    footer_delete: "Usuwanie Danych",
+                    footer_contact: "Kontakt",
+                    footer_copyright: "&copy; 2025 SomaScope. Wszelkie prawa zastrzeżone."
+                },
+                en: {
+                    title: "Privacy Policy & Terms of Service",
+                    last_updated: "Last Updated: July 28, 2025",
+                    privacy_policy_title: "Privacy Policy",
+                    privacy_s1_title: "1. Introduction",
+                    privacy_s1_p1: "This Privacy Policy describes how the SomaScope application (hereinafter \"the App\") collects, uses, and protects your data. Your privacy is our highest priority.",
+                    privacy_s2_title: "2. Data Controller",
+                    privacy_s2_p1: "The controller of your personal data is the Service Provider:",
+                    data_controller_name: "Name",
+                    data_controller_address: "Address",
+                    data_controller_contact: "Contact Email",
+                    privacy_s3_title: "3. What data do we process and why?",
+                    privacy_s3_p1: "The App processes the data you provide to ensure full functionality. This data is stored both locally on your device and synchronized with secure Google Firebase servers to provide access across multiple devices.",
+                    privacy_s3_item1: "<strong>Profile Data:</strong> Your user ID (UID), gender, age, height, weight, training frequency, and goal. This data is essential for personalizing analysis and calculations.",
+                    privacy_s3_item2: "<strong>Analysis Data:</strong> Photos taken within the App and the analysis results (metrics, scores). Photos are processed by the AI model locally on your device and then stored in an encrypted format. The analysis results are synchronized so you can track your progress.",
+                    privacy_s3_item3: "<strong>Training Data:</strong> Workout plans you create, session history, and exercise logs. These are synchronized to give you access on any device.",
+                    privacy_s3_item4: "<strong>Authentication Data:</strong> The App uses Google Sign-In and Facebook Login for authentication. We do not store your passwords. We only store the unique identifier (UID) provided by these services.",
+                    privacy_s4_title: "4. Your Rights",
+                    privacy_s4_p1: "You have full control over your data. You can access, correct, or delete your data at any time. Detailed instructions for partial data deletion (e.g., a single analysis) and complete account deletion are available in the app and on our data deletion information page.",
+                    privacy_s4_p2: "All data transmitted between your device and Firebase servers is encrypted using the TLS protocol.",
+                    privacy_s5_title: "5. Policy Changes",
+                    privacy_s5_p1: "We reserve the right to update this policy. You will be notified of any significant changes via an in-app notification or email.",
+
+                    tos_title: "Terms of Service",
+                    tos_s1_title: "1. General Provisions",
+                    tos_s1_p1: "By using the SomaScope App, you agree to these Terms. If you do not agree with them, please do not use the App.",
+                    tos_s2_title: "2. Service Description",
+                    tos_s2_p1: "The SomaScope App is an informational and motivational tool that uses artificial intelligence (AI) to analyze body proportions and track workout progress.",
+                    tos_s3_title: "3. IMPORTANT: Medical and Sports Disclaimer",
+                    tos_s3_p1: "<strong>The SomaScope App is not a medical device and does not provide professional medical, dietary, or coaching advice.</strong> The analysis results, scores, and any recommendations generated by the App are for informational, estimation, and motivational purposes only.",
+                    tos_s3_p2: "Before starting any new training program, diet, or if you have any doubts about your health, you are obliged to consult a qualified doctor, physiotherapist, or certified personal trainer. The Service Provider is not responsible for any health or training decisions made by the User based on the information contained in the App.",
+                    tos_s4_title: "4. Intellectual Property",
+                    tos_s4_p1: "All rights to the App, including its code, graphic design, logo, and name, are the exclusive property of the Service Provider and are protected by law.",
+                    tos_s5_title: "5. Limitation of Liability",
+                    tos_s5_p1: "The Service Provider provides the App \"as is\" and is not liable for any damages arising from its use or inability to use it, to the fullest extent permitted by law.",
+
+                    footer_home: "Home",
+                    footer_delete: "Data Deletion",
+                    footer_contact: "Contact",
+                    footer_copyright: "&copy; 2025 SomaScope. All rights reserved."
                 }
-            }
+            };
+            
+            const langSwitcher = document.getElementById('lang-switcher');
+            const langButtons = langSwitcher.querySelectorAll('button');
+            const htmlEl = document.documentElement;
 
-            btnPl.addEventListener('click', () => switchLanguage('pl'));
-            btnEn.addEventListener('click', () => switchLanguage('en'));
+            const switchLanguage = (lang) => {
+                htmlEl.setAttribute('lang', lang);
+                document.title = lang === 'pl' ? 'SomaScope - Polityka Prywatności i Warunki Użytkowania' : 'SomaScope - Privacy Policy & Terms of Service';
 
-            const userLang = navigator.language || navigator.userLanguage;
-            if (userLang.startsWith('pl')) {
-                switchLanguage('pl');
-            } else {
-                switchLanguage('en');
-            }
+                document.querySelectorAll('[data-lang-key]').forEach(el => {
+                    const key = el.getAttribute('data-lang-key');
+                    if (translations[lang] && translations[lang][key]) {
+                        el.innerHTML = translations[lang][key];
+                    }
+                });
+
+                localStorage.setItem('somascope_lang', lang);
+
+                langButtons.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.lang === lang);
+                });
+            };
+
+            langSwitcher.addEventListener('click', (e) => {
+                const button = e.target.closest('button');
+                if (button) {
+                    const lang = button.dataset.lang;
+                    if (lang) {
+                        switchLanguage(lang);
+                    }
+                }
+            });
+            
+            const savedLang = localStorage.getItem('somascope_lang') || 'en';
+            switchLanguage(savedLang);
         });
     </script>
 </body>
